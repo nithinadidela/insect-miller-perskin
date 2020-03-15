@@ -1,0 +1,62 @@
+#!/bin/bash
+
+pnt p1 0 0 -0.01
+pnt p2 -0.0141425 -0.0141425 -0.01
+pnt p3 0.339411 -0.367696 -0.01
+pnt p4 0.353553 -0.353553 -0.01
+
+pnt p5 0 0 0.01
+pnt p6 -0.0141425 -0.0141425 0.01
+pnt p7 0.339411 -0.367696 0.01
+pnt p8 0.353553 -0.353553 0.01
+
+line l1 p1 p2 
+line l2 p2 p3
+line l3 p3 p4 
+line l4 p4 p1 
+
+line l5 p5 p6
+line l6 p6 p7 
+line l7 p7 p8
+line l8 p8 p5
+ 
+line l9 p1 p5 
+line l10 p2 p6 
+line l11 p3 p7 
+line l12 p4 p8 
+
+surf s1 l1 l2 l3 l4
+surf s2 l5 l6 l7 l8
+surf s3 l5 l10 l1 l9
+surf s4 l3 l11 l7 l12
+surf s5 l2 l10 l6 l11
+surf s6 l4 l9 l8 l12
+
+body b1 s1 s2 s3 s4 s5 s6
+
+seta length l l2 l4 l6 l8
+seta height l l1 l3 l5 l7
+seta width l l9 l10 l11 l12
+
+seta fix l l1 l5 l9 l10
+comp fix do
+
+seta load l l1 l2 l3 l4 l5 l6 l7 l8
+comp fix do
+
+
+div length 50
+div width 1
+div height 1
+
+elty all he8
+mesh all
+
+send all abq
+
+send fix abq nam
+send load abq nam
+
+view elem
+plot f all
+
