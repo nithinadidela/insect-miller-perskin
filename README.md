@@ -10,7 +10,7 @@ Fluid part of the simulation is performed on OpenFOAM v7. Solid part of the simu
 
 The  simulation is tested in serial mode in a machine running Ubuntu 18.04. The mesh used is coarse and the user is free to make the mesh finer to achieve a better agreement with the standard case after properly understanding the blockMeshdict file.
 
-##Description
+## Description
 
 The insect wing is idealised to be a 2D flatplate traversing at an angle of attack of 45 degrees.
 50% of the wing is rigid. 50% of the wing is elastic.
